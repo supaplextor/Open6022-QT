@@ -4,7 +4,7 @@
 #include "worker.h"
 #include "dso.h"
 #include <QDebug>
-
+#include <unistd.h>
 
 
 HT6022_DeviceTypeDef Device;
@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         else
            {
-
+            qDebug() << "Unable to communicate with USB device. " << res;
             exit(res);
         }
     }
