@@ -1,5 +1,5 @@
 # Open6022-QT
-Open Source software for the Hantek 6022BL DSO written in QT
+Open Source software for the Hantek 6022BL DSO written in QT - https://github.com/gcarmix/Open6022-QT
 
 This is an Open Source software written in QT that let you use Hantek cheap 6022BL Oscilloscope on Mac/Linux machines.
 
