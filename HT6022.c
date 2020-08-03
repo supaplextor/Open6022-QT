@@ -132,10 +132,14 @@ unsigned char HT6022_AddressList [256] = {
   */
 HT6022_ErrorTypeDef HT6022_Init (void)
 {
-	if (libusb_init(NULL) == 0)
+    int rv;
+    rv = libusb_init(NULL);
+    fprintf(stderr, "libusb_init(NULL) == %d\n",rv);
+    if (rv == 0)
 		return HT6022_SUCCESS;
-	else
+    else {
 		return HT6022_ERROR_OTHER; 
+    }
 }
 
 /**

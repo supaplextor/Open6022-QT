@@ -84,12 +84,13 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         else
            {
-            qDebug() << "Unable to communicate with USB device. " << res;
+            qDebug() << "Unable to communicate with USB device. " << (unsigned char)res;
             exit(res);
         }
     }
     else
     {
+        qDebug() << "HT6022_Init() did not connect.";
         exit(-1);
     }
     setupPlot(ui->customPlot);
