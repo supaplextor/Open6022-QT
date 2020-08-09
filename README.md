@@ -12,6 +12,7 @@ $ lsusb | grep -i 602A
 Bus 003 Device 033: ID 04b5:602a ROHM LSI Systems USA, LLC Hantek6022BL 
 Also seen:
 $ lsusb | grep ...
+Bus 003 Device 088: ID 04b4:602a Cypress Semiconductor Corp. (like device 52 below)
 Bus 003 Device 051: ID 04b5:602a ROHM LSI Systems USA, LLC DSO-6022BL
 Bus 003 Device 013: ID 0925:3881 Lakeview Research Saleae Logic - See also <a href="https://sigrok.org/wiki/Saleae_Logic/Info">https://sigrok.org/wiki/Saleae_Logic/Info</a>
 </pre>
@@ -30,4 +31,25 @@ Compare connection 51 to connect 52.
 [488311.214292] usb 3-3: New USB device found, idVendor=04b4, idProduct=602a, bcdDevice= 0.00
 [488311.214298] usb 3-3: New USB device strings: Mfr=0, Product=0, SerialNumber=0
 [488372.549891] usb 3-3: USB disconnect, device number 52
+</pre>
+
+<pre>
+sudo lsusb -vvv (device 52)
+
+Bus 003 Device 088: ID 04b4:602a Cypress Semiconductor Corp. 
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          255 Vendor Specific Class
+  bDeviceSubClass       255 Vendor Specific Subclass
+  bDeviceProtocol       255 Vendor Specific Protocol
+  bMaxPacketSize0        64
+  idVendor           0x04b4 Cypress Semiconductor Corp.
+  idProduct          0x602a 
+  bcdDevice            0.00
+  iManufacturer           0 
+  iProduct                0 
+  iSerial                 0 
+  bNumConfigurations      1
 </pre>
