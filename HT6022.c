@@ -38,8 +38,12 @@
   */ 
 
 /* Private define ------------------------------------------------------------*/
-//#define HT6022_VENDOR_ID          0X4B5
-//#define HT6022_MODEL              0X602A
+// #define HT6022_VENDOR_ID          0X04B5
+// #define HT6022_MODEL              0X602A
+
+ //#define HT6022_VENDOR_ID          0X4B5
+ //#define HT6022_MODEL              0X602A
+
 #define HT6022_VENDOR_ID          0X0925
 #define HT6022_MODEL              0X3881
 
@@ -137,7 +141,7 @@ HT6022_ErrorTypeDef HT6022_Init (void)
 {
     int rv;
     rv = libusb_init(NULL);
-    fprintf(stderr, "%d: libusb_init(NULL) == %d\n",__LINE__,rv);
+    fprintf(stderr, "%s %d: libusb_init(NULL) == %d\n",__FILE__,__LINE__,rv);
     if (rv == 0)
 		return HT6022_SUCCESS;
     else {
@@ -173,16 +177,18 @@ HT6022_ErrorTypeDef HT6022_FirmwareUpload (void)
      * Bus 003 Device 015: ID 0925:3881 Lakeview Research Saleae Logic
      */
     Dev_handle = libusb_open_device_with_vid_pid(NULL, HT6022_FIRMWARE_VENDOR_ID + 1, HT6022_MODEL);
-    fprintf(stderr,"%d: libusb_open_device_with_vid_pid(NULL,%04X,%04X) = %08X\n",__LINE__,HT6022_FIRMWARE_VENDOR_ID + 1, HT6022_MODEL,(int)Dev_handle);
+    // fprintf(stderr,"\t%04X,%04X\n",(HT6022_FIRMWARE_VENDOR_ID + 1), HT6022_MODEL);
+    fprintf(stderr,"%s %d: libusb_open_device_with_vid_pid(NULL,%04X,%04X) = %08X\n",__FILE__,__LINE__,(HT6022_FIRMWARE_VENDOR_ID + 1), HT6022_MODEL,(int)Dev_handle);
     if (Dev_handle != 0) {
         return HT6022_LOADED;
     }
-    fprintf(stderr,"%d: HT6022_ERROR_NO_DEVICE (one attempt of two)\n",__LINE__);
+    fprintf(stderr,"%s %d: HT6022_ERROR_NO_DEVICE (one attempt of two)\n",__FILE__,__LINE__);
 
-    fprintf(stderr,"%d: libusb_open_device_with_vid_pid(NULL,%04X,%04X) = %08X\n",__LINE__,HT6022_FIRMWARE_VENDOR_ID, HT6022_MODEL,(int)Dev_handle);
+    //fprintf(stderr,"\t%04X,%04X\n",(HT6022_FIRMWARE_VENDOR_ID + 1), HT6022_MODEL);
+    fprintf(stderr,"%s %d: libusb_open_device_with_vid_pid(NULL,%04X,%04X) = %08X\n",__FILE__,__LINE__,HT6022_FIRMWARE_VENDOR_ID, HT6022_MODEL,(int)Dev_handle);
     Dev_handle = libusb_open_device_with_vid_pid(NULL, HT6022_FIRMWARE_VENDOR_ID, HT6022_MODEL);
     if (Dev_handle == 0) {
-        fprintf(stderr,"%d: HT6022_ERROR_NO_DEVICE (attempt two of two)\n",__LINE__);
+        fprintf(stderr,"%s %d: HT6022_ERROR_NO_DEVICE (attempt two of two)\n",__FILE__,__LINE__);
  		return HT6022_ERROR_NO_DEVICE;
     }
 	
@@ -190,14 +196,14 @@ HT6022_ErrorTypeDef HT6022_FirmwareUpload (void)
 		if(libusb_detach_kernel_driver(Dev_handle, 0) != 0)
 		{
 			libusb_close(Dev_handle);
-            fprintf(stderr,"libusb_close(Dev_handle); line %d",__LINE__);
+            fprintf(stderr,"%s %d: libusb_close(Dev_handle);",__FILE__,__LINE__);
 			return HT6022_ERROR_OTHER;
 		}
 
 	if(libusb_claim_interface(Dev_handle, 0) < 0)
 	{
 		libusb_close(Dev_handle);
-        fprintf(stderr,"libusb_close(Dev_handle); line %d",__LINE__);
+        fprintf(stderr,"%s %d: libusb_close(Dev_handle);",__FILE__,__LINE__);
 		return HT6022_ERROR_OTHER;
 	}
 

@@ -25,8 +25,20 @@
   */
 /* Private define ------------------------------------------------------------*/ 
 #define HT6022_FIRMWARE_SIZE 472
-//#define HT6022_FIRMWARE_VENDOR_ID    0X4B4
-#define HT6022_FIRMWARE_VENDOR_ID    0X0925
+
+ /*
+
+  $ lsusb | grep -i 602A
+Bus 003 Device 033: ID 04b5:602a ROHM LSI Systems USA, LLC Hantek6022BL
+Also seen:
+$ lsusb | grep ...
+Bus 003 Device 051: ID 04b5:602a ROHM LSI Systems USA, LLC DSO-6022BL
+Bus 003 Device 013: ID 0925:3881 Lakeview Research Saleae Logic - See also https://sigrok.org/wiki/Saleae_Logic/Info
+ */
+
+// #define HT6022_FIRMWARE_VENDOR_ID    0X04B4
+#define HT6022_FIRMWARE_VENDOR_ID    0X0924
+
 #define HT6022_FIRMWARE_REQUEST_TYPE 0X40
 #define HT6022_FIRMWARE_REQUEST      0XA0
 #define HT6022_FIRMWARE_INDEX        0X00
