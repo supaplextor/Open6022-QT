@@ -11,6 +11,7 @@ lsusb output below. Needs sudo to access lower level usb functions. Build with q
 $ lsusb | grep -i 602A
 Bus 003 Device 033: ID 04b5:602a ROHM LSI Systems USA, LLC Hantek6022BL 
 Also seen:
-$ lsusb | grep 3881
+$ lsusb | grep ...
+Bus 003 Device 051: ID 04b5:602a ROHM LSI Systems USA, LLC DSO-6022BL
 Bus 003 Device 013: ID 0925:3881 Lakeview Research Saleae Logic - See also <a href="https://sigrok.org/wiki/Saleae_Logic/Info">https://sigrok.org/wiki/Saleae_Logic/Info</a>
 </pre>
