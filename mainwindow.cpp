@@ -45,48 +45,43 @@ MainWindow::MainWindow(QWidget *parent) :
         if (res == HT6022_SUCCESS || res == HT6022_LOADED)
         {
 
-            while(res = HT6022_DeviceOpen (&Device) != 0)
-               {
+            while(res = HT6022_DeviceOpen (&Device) != 0) {
                 sleep(1);
                 qDebug() << __FILE__ << __LINE__ << ": Waiting for device..." << endl;
                 ui->statusBar->showMessage("Loading Firmware...",0);
                 QApplication::processEvents();
             }
-                Channel1.Enabled = true;
-                ui->checkBoxCH1ON->setChecked(true);
-                Channel2.Enabled = true;
-                ui->checkBoxCH2ON->setChecked(true);
-                ui->comboMemDepth->setCurrentIndex(3);
-                ui->MemDepthText->setPalette(*palette);
-                HT6022_SetSR (&Device, HT6022_100KSa);
-                HT6022_SetCH1IR (&Device, HT6022_10V);
-                HT6022_SetCH2IR (&Device, HT6022_10V);
-                VTrigger = 0.5;
-                Ts = 2e-6;
-                Tdiv = 1e-3;
-                Channel1.Vdiv = 1;
-                Channel1.VScale = 5;
-                Channel2.Vdiv = 1;
-                Channel2.VScale = 5;
-                Channel1.Zero = 0;
-                Channel1.Zero = 0;
-                ui->comboBoxV1div->setCurrentIndex(1);
-                ui->comboBoxV2div->setCurrentIndex(1);
-                ui->comboSampling->setCurrentIndex(TDIV_1MS);
-                ui->statusBar->showMessage("Device initialized.",0);
-                qDebug() << __FILE__ << __LINE__ << "Init values set\r\n";
-                worker.start();
-                worker.blockSignals(1);
-                ui->actionSave_to_file->setEnabled(false);
-        }
-        else
-           {
+            Channel1.Enabled = true;
+            ui->checkBoxCH1ON->setChecked(true);
+            Channel2.Enabled = true;
+            ui->checkBoxCH2ON->setChecked(true);
+            ui->comboMemDepth->setCurrentIndex(3);
+            ui->MemDepthText->setPalette(*palette);
+            HT6022_SetSR (&Device, HT6022_100KSa);
+            HT6022_SetCH1IR (&Device, HT6022_10V);
+            HT6022_SetCH2IR (&Device, HT6022_10V);
+            VTrigger = 0.5;
+            Ts = 2e-6;
+            Tdiv = 1e-3;
+            Channel1.Vdiv = 1;
+            Channel1.VScale = 5;
+            Channel2.Vdiv = 1;
+            Channel2.VScale = 5;
+            Channel1.Zero = 0;
+            Channel1.Zero = 0;
+            ui->comboBoxV1div->setCurrentIndex(1);
+            ui->comboBoxV2div->setCurrentIndex(1);
+            ui->comboSampling->setCurrentIndex(TDIV_1MS);
+            ui->statusBar->showMessage("Device initialized.",0);
+            qDebug() << __FILE__ << __LINE__ << "Init values set\r\n";
+            worker.start();
+            worker.blockSignals(1);
+            ui->actionSave_to_file->setEnabled(false);
+        } else {
             qDebug() << __FILE__ << __LINE__ << ": Unable to communicate with USB device. exit code" << (unsigned char)res;
             exit(res);
         }
-    }
-    else
-    {
+    } else {
         qDebug() << __FILE__ << __LINE__ << ": HT6022_Init() did not connect.";
         exit(-1);
     }
@@ -96,16 +91,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::setupPlot(QCustomPlot *customPlot)
 {
-    int i;
+  int i;
   customPlot->setBackground(Qt::black);
   // create graph and assign data to it:
   customPlot->addGraph();
   //customPlot->graph(0)->setData(x, y);
   customPlot->addGraph();
-
   customPlot->addGraph();//trigger
-
-
   // set axes ranges, so we see all data:
   //customPlot->xAxis->setRange(0, 16);
   // add the text label at the top:
@@ -140,10 +132,7 @@ void MainWindow::onYRangeChanged(const QCPRange &range)
     QCPRange boundedRange = range;
     boundedRange.lower = -1;
     boundedRange.upper = 1;
-
-
-
-        ui->customPlot->yAxis->setRange(boundedRange);
+    ui->customPlot->yAxis->setRange(boundedRange);
 }
 
 MainWindow::~MainWindow()
