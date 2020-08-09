@@ -52,4 +52,22 @@ Device Descriptor:
   iProduct                0 
   iSerial                 0 
   bNumConfigurations      1
+...
+Again:
+Bus 003 Device 089: ID 04b5:602a ROHM LSI Systems USA, LLC DSO-6022BL
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          255 Vendor Specific Class
+  bDeviceSubClass       255 Vendor Specific Subclass
+  bDeviceProtocol       255 Vendor Specific Protocol
+  bMaxPacketSize0        64
+  idVendor           0x04b5 ROHM LSI Systems USA, LLC
+  idProduct          0x602a 
+  bcdDevice            2.07
+  iManufacturer           1 OpenHantek
+  iProduct                2 DSO-6022BL
+  iSerial                 3 0A24012FCC19
+  bNumConfigurations      1
 </pre>
