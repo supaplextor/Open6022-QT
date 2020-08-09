@@ -31,9 +31,6 @@ QVector<double>x_vec(HT6022_32KB);
 QCPItemLine *vCursorX1,*vCursorX2,*vCursorTrigger;
 unsigned char i1;
 
-
-
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -51,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
             while(res = HT6022_DeviceOpen (&Device) != 0)
                {
                 sleep(1);
-                qDebug() << "Waiting for device..." << endl;
+                qDebug() << __LINE__ << ": Waiting for device..." << endl;
                 ui->statusBar->showMessage("Loading Firmware...",0);
                 QApplication::processEvents();
             }
@@ -77,20 +74,20 @@ MainWindow::MainWindow(QWidget *parent) :
                 ui->comboBoxV2div->setCurrentIndex(1);
                 ui->comboSampling->setCurrentIndex(TDIV_1MS);
                 ui->statusBar->showMessage("Device initialized.",0);
-                qDebug() << "Init values set\r\n";
+                qDebug() << __LINE__ << "Init values set\r\n";
                 worker.start();
                 worker.blockSignals(1);
                 ui->actionSave_to_file->setEnabled(false);
         }
         else
            {
-            qDebug() << "Unable to communicate with USB device. " << (unsigned char)res;
+            qDebug() << __LINE__ << ": Unable to communicate with USB device. exit code" << (unsigned char)res;
             exit(res);
         }
     }
     else
     {
-        qDebug() << "HT6022_Init() did not connect.";
+        qDebug() << __LINE__ << ": HT6022_Init() did not connect.";
         exit(-1);
     }
     setupPlot(ui->customPlot);
