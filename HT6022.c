@@ -38,14 +38,10 @@
   */ 
 
 /* Private define ------------------------------------------------------------*/
-// #define HT6022_VENDOR_ID          0X04B5
-// #define HT6022_MODEL              0X602A
+#define HT6022_VENDOR_ID          0X04B5
+#define HT6022_MODEL              0X602A
 
- //#define HT6022_VENDOR_ID          0X4B5
- //#define HT6022_MODEL              0X602A
-
-#define HT6022_VENDOR_ID          0X0925
-#define HT6022_MODEL              0X3881
+// Bus 003 Device 090: ID 04b4:602a Cypress Semiconductor Corp.
 
 #define HT6022_IR1_REQUEST_TYPE 0X40
 #define HT6022_IR1_REQUEST      0XE0
