@@ -8,8 +8,8 @@ Tested on Ubuntu 20.04.
 # Building
 
 <pre>
-apt update
-apt install qtcreator
+sudo apt update
+sudo apt install qtcreator
 git clone https://github.com/supaplextor/Open6022-QT.git
 cd Open6022-QT
 qtcreator Open6022-QT.pro
